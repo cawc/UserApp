@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../user';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../user.service';
 import {Location} from '@angular/common';
 
@@ -26,14 +26,15 @@ export class UserDetailComponent implements OnInit {
 
   save(): void {
     this.userService.updateUser(this.user).subscribe(
-      () => this.goBack()
+      () => this.router.navigate(['/users'])
     );
   }
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
